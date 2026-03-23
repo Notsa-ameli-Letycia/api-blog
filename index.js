@@ -1,20 +1,16 @@
-// 🔥 index.js
+
 const express = require('express');
-const db = require('./db'); // Connexion MySQL
+const db = require('./db'); 
 
 const app = express();
-app.use(express.json()); // Toujours avant les routes
+app.use(express.json()); 
 
-console.log("🔥 INDEX.JS EN COURS D'EXECUTION");
-
-// ------------------- ROUTES ------------------- //
-
-// ✅ Route test racine
+console.log(" INDEX.JS EN COURS D'EXECUTION");
 app.get('/', (req, res) => {
   res.send('API Blog fonctionne !');
 });
 
-// 1️⃣ Créer un article
+
 app.post('/articles', (req, res) => {
   const { titre, contenu, auteur, categorie, tags } = req.body;
 
@@ -26,12 +22,11 @@ app.post('/articles', (req, res) => {
       return res.status(500).json({ error: err.message });
     }
 
-    console.log("🚀 Article créé avec ID :", result.insertId);
+    console.log(" Article créé avec ID :", result.insertId);
     res.status(201).json({ message: "Article créé !", id: result.insertId });
   });
 });
 
-// 2️⃣ Voir tous les articles
 app.get('/articles', (req, res) => {
   const sql = 'SELECT * FROM articles';
   db.query(sql, (err, results) => {
@@ -40,12 +35,12 @@ app.get('/articles', (req, res) => {
       return res.status(500).json({ error: err.message });
     }
 
-    console.log("📥 GET /articles →", results.length, "articles trouvés");
+    console.log("GET /articles →", results.length, "articles trouvés");
     res.status(200).json(results);
   });
 });
 
-// 3️⃣ Voir un article par ID
+
 app.get('/articles/:id', (req, res) => {
   const { id } = req.params;
   const sql = 'SELECT * FROM articles WHERE id = ?';
@@ -58,7 +53,7 @@ app.get('/articles/:id', (req, res) => {
   });
 });
 
-// 4️⃣ Modifier un article
+
 app.put('/articles/:id', (req, res) => {
   const { id } = req.params;
   const { titre, contenu, auteur, categorie, tags } = req.body;
@@ -72,7 +67,7 @@ app.put('/articles/:id', (req, res) => {
   });
 });
 
-// 5️⃣ Supprimer un article
+
 app.delete('/articles/:id', (req, res) => {
   const { id } = req.params;
 
@@ -85,8 +80,8 @@ app.delete('/articles/:id', (req, res) => {
   });
 });
 
-// ------------------- SERVEUR ------------------- //
+
 app.listen(3000, () => {
-  console.log('🚀 Serveur sur http://localhost:3000');
+  console.log(' Serveur sur http://localhost:3000');
 });
 
