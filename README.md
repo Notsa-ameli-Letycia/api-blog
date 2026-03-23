@@ -1,7 +1,7 @@
 README.md 
 # API Blog – Node.js & MySQL
 
-## 📝 Description
+##  Description
 Ce projet est une API backend pour gérer un blog simple.  
 Elle permet de créer, lire, modifier, supprimer et rechercher des articles.  
 Chaque article contient : titre, contenu, auteur, catégorie, tags et date de création.
@@ -32,7 +32,7 @@ mon-api-blog/
 
 ---
 
-## 💻 Installation et configuration
+##  Installation et configuration
 
 1. Cloner le dépôt :  
 ```bash
